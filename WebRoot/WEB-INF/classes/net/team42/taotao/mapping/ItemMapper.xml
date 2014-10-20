@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.team42.taotao.dao.ItemMapper" >
+  <resultMap id="BaseResultMap" type="net.team42.taotao.model.Item" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="original_prize" property="originalPrize" jdbcType="INTEGER" />
+    <result column="current_prize" property="currentPrize" jdbcType="INTEGER" />
+    <result column="recency" property="recency" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="images" property="images" jdbcType="VARCHAR" />
+    <result column="describe" property="describe" jdbcType="VARCHAR" />
+    <result column="pubdate" property="pubdate" jdbcType="TIMESTAMP" />
+    <result column="is_onsale" property="isOnsale" jdbcType="BIT" />
+    <result column="is_vaild" property="isVaild" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, title, name, original_prize, current_prize, recency, type, images, describe, 
+    pubdate, is_onsale, is_vaild
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from item
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from item
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="net.team42.taotao.model.Item" >
+    insert into item (id, title, name, 
+      original_prize, current_prize, recency, 
+      type, images, describe, 
+      pubdate, is_onsale, is_vaild
+      )
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{originalPrize,jdbcType=INTEGER}, #{currentPrize,jdbcType=INTEGER}, #{recency,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{images,jdbcType=VARCHAR}, #{describe,jdbcType=VARCHAR}, 
+      #{pubdate,jdbcType=TIMESTAMP}, #{isOnsale,jdbcType=BIT}, #{isVaild,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="net.team42.taotao.model.Item" >
+    insert into item
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="originalPrize != null" >
+        original_prize,
+      </if>
+      <if test="currentPrize != null" >
+        current_prize,
+      </if>
+      <if test="recency != null" >
+        recency,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="images != null" >
+        images,
+      </if>
+      <if test="describe != null" >
+        describe,
+      </if>
+      <if test="pubdate != null" >
+        pubdate,
+      </if>
+      <if test="isOnsale != null" >
+        is_onsale,
+      </if>
+      <if test="isVaild != null" >
+        is_vaild,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="originalPrize != null" >
+        #{originalPrize,jdbcType=INTEGER},
+      </if>
+      <if test="currentPrize != null" >
+        #{currentPrize,jdbcType=INTEGER},
+      </if>
+      <if test="recency != null" >
+        #{recency,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="images != null" >
+        #{images,jdbcType=VARCHAR},
+      </if>
+      <if test="describe != null" >
+        #{describe,jdbcType=VARCHAR},
+      </if>
+      <if test="pubdate != null" >
+        #{pubdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isOnsale != null" >
+        #{isOnsale,jdbcType=BIT},
+      </if>
+      <if test="isVaild != null" >
+        #{isVaild,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="net.team42.taotao.model.Item" >
+    update item
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="originalPrize != null" >
+        original_prize = #{originalPrize,jdbcType=INTEGER},
+      </if>
+      <if test="currentPrize != null" >
+        current_prize = #{currentPrize,jdbcType=INTEGER},
+      </if>
+      <if test="recency != null" >
+        recency = #{recency,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="images != null" >
+        images = #{images,jdbcType=VARCHAR},
+      </if>
+      <if test="describe != null" >
+        describe = #{describe,jdbcType=VARCHAR},
+      </if>
+      <if test="pubdate != null" >
+        pubdate = #{pubdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isOnsale != null" >
+        is_onsale = #{isOnsale,jdbcType=BIT},
+      </if>
+      <if test="isVaild != null" >
+        is_vaild = #{isVaild,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.team42.taotao.model.Item" >
+    update item
+    set title = #{title,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      original_prize = #{originalPrize,jdbcType=INTEGER},
+      current_prize = #{currentPrize,jdbcType=INTEGER},
+      recency = #{recency,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      images = #{images,jdbcType=VARCHAR},
+      describe = #{describe,jdbcType=VARCHAR},
+      pubdate = #{pubdate,jdbcType=TIMESTAMP},
+      is_onsale = #{isOnsale,jdbcType=BIT},
+      is_vaild = #{isVaild,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
